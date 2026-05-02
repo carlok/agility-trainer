@@ -293,6 +293,8 @@ button.nav-drawer-btn {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--color-muted);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
 }
 
 .app-dialog-dismiss {

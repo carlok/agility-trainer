@@ -14,6 +14,9 @@ import { speakInstruction, cancelSpeech } from "./speech.js";
 /** Source repository (GitHub user + repo). */
 const REPO_URL = "https://github.com/carlok/agility-trainer";
 
+/** Public static deploy (Surge). */
+const LIVE_URL = "https://efficacious-fold.surge.sh/";
+
 const UI = {
   en: {
     setupHeading: "Session setup",
@@ -46,11 +49,13 @@ const UI = {
     navAbout: "About",
     navCredits: "Credits",
     aboutTitle: "About",
-    aboutText:
+    aboutBody:
       "Agility Trainer is a solo, no-equipment workout helper: random bodyweight agility drills, optional voice cues, English or Italian. It is for general movement guidance only—not medical advice. Stop if you feel pain, dizziness, or shortness of breath.",
+    aboutLive: "Live app:",
     creditsTitle: "Credits",
-    creditsText:
+    creditsBody:
       "Built with HTML, CSS, and JavaScript (no app framework). Fonts: Barlow & Barlow Condensed (Google Fonts). Repository: github.com/carlok/agility-trainer — issues and contributions welcome.",
+    creditsLive: "Public demo:",
     dialogClose: "Close",
   },
   it: {
@@ -84,11 +89,13 @@ const UI = {
     navAbout: "Informazioni",
     navCredits: "Crediti",
     aboutTitle: "Informazioni",
-    aboutText:
+    aboutBody:
       "Agility Trainer ti aiuta ad allenare agilità a corpo libero, da solo: esercizi casuali, voce opzionale, italiano o inglese. È solo orientamento generale al movimento—non è consulenza medica. Interrompi in caso di dolore, vertigini o affanno.",
+    aboutLive: "Versione online:",
     creditsTitle: "Crediti",
-    creditsText:
+    creditsBody:
       "Realizzato con HTML, CSS e JavaScript (senza framework). Font: Barlow e Barlow Condensed (Google Fonts). Repository: github.com/carlok/agility-trainer — segnalazioni e contributi benvenuti.",
+    creditsLive: "Demo pubblica:",
     dialogClose: "Chiudi",
   },
 };
@@ -290,9 +297,9 @@ function translateNavChrome() {
   els.navActionAbout.textContent = txt.navAbout;
   els.navActionCredits.textContent = txt.navCredits;
   els.aboutHeading.textContent = txt.aboutTitle;
-  els.aboutText.textContent = txt.aboutText;
+  els.aboutText.textContent = `${txt.aboutBody}\n\n${txt.aboutLive} ${LIVE_URL}`;
   els.creditsHeading.textContent = txt.creditsTitle;
-  els.creditsText.textContent = txt.creditsText;
+  els.creditsText.textContent = `${txt.creditsBody}\n\n${txt.creditsLive} ${LIVE_URL}`;
   els.aboutDismiss.textContent = txt.dialogClose;
   els.creditsDismiss.textContent = txt.dialogClose;
   const toggleLabel = els.navMenuToggle.querySelector(".nav-menu-toggle-text");

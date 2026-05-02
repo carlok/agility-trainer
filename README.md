@@ -1,5 +1,7 @@
 # Agility Trainer (MVP)
 
+**Live app (Surge):** [https://efficacious-fold.surge.sh/](https://efficacious-fold.surge.sh/)
+
 Single-page **mobile-first** web app that cycles through random bodyweight agility exercises (English or Italian), with Web Audio transition beeps, optional **speech synthesis**, category filters, configurable pace and session length, and settings persisted in `localStorage`.
 
 - **Runtime**: plain HTML/CSS and native browser APIs in the browser (no bundled npm runtime).
@@ -111,7 +113,7 @@ podman run --rm -p 8080:80 \
   agility-trainer
 ```
 
-Open `http://localhost:8080`.
+Open `http://localhost:8080` — or use the hosted build at [https://efficacious-fold.surge.sh/](https://efficacious-fold.surge.sh/).
 
 On macOS, omit `:Z` if SELinux labels cause trouble:
 
@@ -156,7 +158,17 @@ Same as production run: keep the volume mount, edit files locally, refresh the b
 
 ## Git and GitHub (`gh`)
 
-The in-app menu links to **`https://github.com/carlok/agility-trainer`**. After you create that repository (or rename the constant in `js/app.js` if your user/org differs), set the **repository “About”** description on GitHub to match the app (e.g. *Solo bodyweight agility trainer — random exercises, EN/IT, Web Audio, speech, mobile-first static site*).
+Source repo: **[carlok/agility-trainer](https://github.com/carlok/agility-trainer)**. Public demo: **[https://efficacious-fold.surge.sh/](https://efficacious-fold.surge.sh/)**.
+
+Set the GitHub **Website** field (shown in the repo “About” sidebar) to the Surge URL:
+
+```bash
+gh repo edit carlok/agility-trainer --homepage https://efficacious-fold.surge.sh/
+```
+
+The **description** line can stay aligned with the app, for example: *Solo bodyweight agility trainer — random exercises, EN/IT, Web Audio, speech, mobile-first static web app.* (`gh repo edit --description "..."` if you change it.)
+
+If you fork or rename the repo, update `REPO_URL` and `LIVE_URL` in `js/app.js` and this README.
 
 ### Local repository
 
