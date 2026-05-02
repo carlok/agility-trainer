@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Solo agility trainer — random bodyweight exercises, English or Italian." />
+    <title>Agility Trainer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-panel">Skip to main content</a>
+
+    <header class="app-header" role="banner">
+      <div class="header-bar">
+        <div class="brand-block">
+          <svg class="brand-icon" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.2l5.5 3.4L12 11 6.5 7.6 12 4.2zM6 9.3l5 3v6.1l-5-3.1V9.3zm7 9.1v-6.1l5-3v6.1l-5 3z"
+            />
+          </svg>
+          <h1 class="app-title">Agility Trainer</h1>
+        </div>
+        <button
+          type="button"
+          id="nav-menu-toggle"
+          class="nav-menu-toggle"
+          aria-expanded="false"
+          aria-controls="nav-drawer-menu"
+        >
+          <span class="nav-menu-toggle-text visually-hidden">Open menu</span>
+          <svg class="nav-menu-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+          </svg>
+        </button>
+      </div>
+      <p class="tagline">No equipment · Solo · Mobile-first</p>
+    </header>
+
+    <div id="nav-drawer-backdrop" class="nav-drawer-backdrop" hidden aria-hidden="true"></div>
+    <nav id="nav-drawer-menu" class="nav-drawer" hidden aria-label="Site">
+      <ul class="nav-drawer-list">
+        <li>
+          <button type="button" id="nav-action-home" class="nav-drawer-btn">Home</button>
+        </li>
+        <li>
+          <a
+            id="nav-github-link"
+            class="nav-drawer-btn nav-drawer-external"
+            href="https://github.com/carlok/agility-trainer"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a>
+        </li>
+        <li>
+          <button type="button" id="nav-action-about" class="nav-drawer-btn">About</button>
+        </li>
+        <li>
+          <button type="button" id="nav-action-credits" class="nav-drawer-btn">Credits</button>
+        </li>
+      </ul>
+    </nav>
+
+    <main id="main-panel" class="main-panel" tabindex="-1">
+      <section id="setup-screen" class="panel setup-panel" aria-labelledby="setup-heading">
+        <h2 id="setup-heading" class="panel-title">Session setup</h2>
+
+        <div class="field">
+          <label for="pace-range"
+            ><span id="pace-label-lead">Pace per exercise:</span>
+            <span id="pace-value" class="value-pill">5</span>
+            <span id="pace-label-tail">s</span></label
+          >
+          <input id="pace-range" type="range" min="2" max="15" value="5" step="1" />
+          <span class="hint">2–15 seconds</span>
+        </div>
+
+        <fieldset class="field fieldset">
+          <legend>Session length</legend>
+          <label class="check-row">
+            <input id="session-unlimited" type="checkbox" checked />
+            <span id="session-unlimited-label">Unlimited</span>
+          </label>
+          <label for="session-count">Or number of exercises</label>
+          <input id="session-count" type="number" min="1" max="500" value="30" disabled />
+        </fieldset>
+
+        <fieldset class="field fieldset">
+          <legend>Categories</legend>
+          <p id="category-hint" class="hint">Enable at least one category.</p>
+          <div id="category-toggles" class="category-grid"></div>
+        </fieldset>
+
+        <div class="field">
+          <label for="language-select">Language</label>
+          <select id="language-select" aria-describedby="lang-hint">
+            <option value="en">English</option>
+            <option value="it">Italiano</option>
+          </select>
+          <span id="lang-hint" class="hint">Instructions and labels follow this setting.</span>
+        </div>
+
+        <div class="field">
+          <label class="check-row">
+            <input id="voice-toggle" type="checkbox" checked />
+            <span id="voice-toggle-label">Speak each exercise (browser voice)</span>
+          </label>
+        </div>
+
+        <p id="setup-warning" class="warning" role="status" hidden></p>
+
+        <button type="button" id="btn-start" class="btn btn-primary btn-large">
+          <svg class="btn-icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+          </svg>
+          <span id="btn-start-label">Start</span>
+        </button>
+      </section>
+
+      <section id="workout-screen" class="panel workout-panel" hidden aria-labelledby="workout-heading">
+        <h2 id="workout-heading" class="visually-hidden">Workout</h2>
+
+        <div class="workout-meta">
+          <span id="session-progress" class="meta-pill" aria-live="polite"></span>
+          <span id="countdown-display" class="countdown" aria-live="polite">—</span>
+        </div>
+
+        <div
+          id="exercise-display"
+          class="exercise-display"
+          aria-live="polite"
+          aria-atomic="true"
+          tabindex="-1"
+        >
+          <p class="exercise-label">Ready</p>
+        </div>
+
+        <section
+          id="exercise-howto"
+          class="exercise-howto"
+          hidden
+          tabindex="-1"
+          aria-labelledby="exercise-howto-title"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <h3 class="exercise-howto-title" id="exercise-howto-title"></h3>
+          <p id="exercise-desc" class="exercise-desc"></p>
+        </section>
+
+        <div class="workout-actions">
+          <button type="button" id="btn-pause" class="btn btn-secondary btn-large">
+            <svg class="btn-icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M6 5h4v14H6V5zm8 0h4v14h-4V5z" />
+            </svg>
+            <span id="pause-label">Pause</span>
+          </button>
+          <button type="button" id="btn-stop" class="btn btn-ghost btn-large">
+            <svg class="btn-icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M6 6h12v12H6V6z" />
+            </svg>
+            <span id="btn-stop-label">Stop</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <small>For movement guidance only — stop if you feel pain or dizziness.</small>
+    </footer>
+
+    <dialog id="dialog-about" class="app-dialog">
+      <div class="app-dialog-inner">
+        <h2 id="about-heading" class="app-dialog-title"></h2>
+        <p id="about-text" class="app-dialog-text"></p>
+        <button type="button" id="about-dismiss" class="btn btn-primary btn-large app-dialog-dismiss"></button>
+      </div>
+    </dialog>
+
+    <dialog id="dialog-credits" class="app-dialog">
+      <div class="app-dialog-inner">
+        <h2 id="credits-heading" class="app-dialog-title"></h2>
+        <p id="credits-text" class="app-dialog-text"></p>
+        <button type="button" id="credits-dismiss" class="btn btn-primary btn-large app-dialog-dismiss"></button>
+      </div>
+    </dialog>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
