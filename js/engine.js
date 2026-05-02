@@ -30,7 +30,7 @@ export function pickNextExercise(pool, lastExerciseId, random01) {
  */
 export function clampPaceSec(paceSec) {
   const n = Number(paceSec);
-  if (!Number.isFinite(n)) return 5;
+  if (!Number.isFinite(n)) return 15;
   return Math.min(15, Math.max(2, Math.round(n)));
 }
 

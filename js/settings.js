@@ -14,7 +14,7 @@ const DEFAULT_CATEGORIES = {
 };
 
 export const DEFAULT_SETTINGS = {
-  paceSec: 5,
+  paceSec: 15,
   sessionUnlimited: true,
   sessionCount: 30,
   language: /** @type {'en' | 'it'} */ ("en"),
