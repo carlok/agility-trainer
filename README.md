@@ -1,7 +1,5 @@
 # Agility Trainer (MVP)
 
-**Live app (Surge):** [https://efficacious-fold.surge.sh/](https://efficacious-fold.surge.sh/)
-
 Single-page **mobile-first** web app that cycles through random bodyweight agility exercises (English or Italian), with Web Audio transition beeps, optional **speech synthesis**, category filters, configurable pace and session length, and settings persisted in `localStorage`.
 
 - **Runtime**: plain HTML/CSS and native browser APIs in the browser (no bundled npm runtime).
